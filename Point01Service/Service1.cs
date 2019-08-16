@@ -21,8 +21,14 @@ namespace Point01Service
 
         protected override void OnStart(string[] args)
         {
-            timer.Interval = 5000; //number in milisecinds  
+            timer.Elapsed += OnTimedEvent;
+            timer.Interval = 60000; //number in milisecinds  60000 = 1 Min.
             timer.Enabled = true;
+        }
+
+        private void OnTimedEvent(object sender, ElapsedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         protected override void OnStop()
