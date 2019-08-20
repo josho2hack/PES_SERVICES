@@ -1,0 +1,741 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="EPESModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="450" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" />
+          <Property Name="NormalizedUserName" Type="nvarchar" MaxLength="256" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="NormalizedEmail" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="ConcurrencyStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEnd" Type="datetimeoffset" Precision="7" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="Class" Type="nvarchar(max)" />
+          <Property Name="DOB" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="FName" Type="nvarchar(max)" />
+          <Property Name="GroupName" Type="nvarchar(max)" />
+          <Property Name="LName" Type="nvarchar(max)" />
+          <Property Name="OfficeId" Type="nvarchar(max)" />
+          <Property Name="OfficeName" Type="nvarchar(max)" />
+          <Property Name="PIN" Type="nvarchar(max)" />
+          <Property Name="PosName" Type="nvarchar(max)" />
+          <Property Name="Title" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="DataForEvaluations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Expect" Type="decimal" Precision="38" Scale="10" Nullable="false" />
+          <Property Name="Result" Type="decimal" Precision="38" Scale="10" Nullable="false" />
+          <Property Name="OldResult" Type="decimal" Precision="38" Scale="10" />
+          <Property Name="AuditComment" Type="nvarchar(max)" />
+          <Property Name="Approve" Type="int" Nullable="false" />
+          <Property Name="CommentApprove" Type="nvarchar(max)" />
+          <Property Name="PointOfEvaluationId" Type="int" Nullable="false" />
+          <Property Name="OfficeId" Type="int" Nullable="false" />
+          <Property Name="UpdateUserId" Type="nvarchar" MaxLength="450" />
+          <Property Name="Month" Type="int" Nullable="false" />
+          <Property Name="AttachFile" Type="nvarchar(max)" />
+          <Property Name="CompletedDate" Type="datetime2" Precision="7" />
+        </EntityType>
+        <EntityType Name="Offices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="8" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Remark" Type="nvarchar(max)" />
+          <Property Name="ApplicationUserId" Type="nvarchar" MaxLength="450" />
+        </EntityType>
+        <EntityType Name="PointOfEvaluations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Year" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Point" Type="int" Nullable="false" />
+          <Property Name="SubPoint" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Weight" Type="decimal" Precision="7" Scale="4" Nullable="false" />
+          <Property Name="Rate1" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Rate2" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Rate3" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Rate4" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Rate5" Type="decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="OwnerOfficeId" Type="int" />
+          <Property Name="AuditOfficeId" Type="int" />
+          <Property Name="UpdateUserId" Type="nvarchar" MaxLength="450" />
+          <Property Name="Plan" Type="int" Nullable="false" />
+          <Property Name="Unit" Type="int" />
+          <Property Name="DetailPlan" Type="nvarchar(max)" />
+          <Property Name="DetailRate1" Type="nvarchar(max)" />
+          <Property Name="DetailRate2" Type="nvarchar(max)" />
+          <Property Name="DetailRate3" Type="nvarchar(max)" />
+          <Property Name="DetailRate4" Type="nvarchar(max)" />
+          <Property Name="DetailRate5" Type="nvarchar(max)" />
+          <Property Name="Detail2Rate1" Type="nvarchar(max)" />
+          <Property Name="Detail2Rate2" Type="nvarchar(max)" />
+          <Property Name="Detail2Rate3" Type="nvarchar(max)" />
+          <Property Name="Detail2Rate4" Type="nvarchar(max)" />
+          <Property Name="Detail2Rate5" Type="nvarchar(max)" />
+          <Property Name="Rate1MonthStart" Type="datetime2" Precision="7" />
+          <Property Name="Rate1MonthStart2" Type="datetime2" Precision="7" />
+          <Property Name="Rate1MonthStop" Type="datetime2" Precision="7" />
+          <Property Name="Rate1MonthStop2" Type="datetime2" Precision="7" />
+          <Property Name="Rate2MonthStart" Type="datetime2" Precision="7" />
+          <Property Name="Rate2MonthStart2" Type="datetime2" Precision="7" />
+          <Property Name="Rate2MonthStop" Type="datetime2" Precision="7" />
+          <Property Name="Rate2MonthStop2" Type="datetime2" Precision="7" />
+          <Property Name="Rate3MonthStart" Type="datetime2" Precision="7" />
+          <Property Name="Rate3MonthStart2" Type="datetime2" Precision="7" />
+          <Property Name="Rate3MonthStop" Type="datetime2" Precision="7" />
+          <Property Name="Rate3MonthStop2" Type="datetime2" Precision="7" />
+          <Property Name="Rate4MonthStart" Type="datetime2" Precision="7" />
+          <Property Name="Rate4MonthStart2" Type="datetime2" Precision="7" />
+          <Property Name="Rate4MonthStop" Type="datetime2" Precision="7" />
+          <Property Name="Rate4MonthStop2" Type="datetime2" Precision="7" />
+          <Property Name="Rate5MonthStart" Type="datetime2" Precision="7" />
+          <Property Name="Rate5MonthStart2" Type="datetime2" Precision="7" />
+          <Property Name="Rate5MonthStop" Type="datetime2" Precision="7" />
+          <Property Name="Rate5MonthStop2" Type="datetime2" Precision="7" />
+          <Property Name="Ddrive" Type="nvarchar(max)" />
+          <Property Name="ExpectPlan" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Scores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ScoreValue" Type="decimal" Precision="5" Scale="4" Nullable="false" />
+          <Property Name="PointOfEvaluationId" Type="int" Nullable="false" />
+          <Property Name="OfficeId" Type="int" Nullable="false" />
+          <Property Name="LastMonth" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_DataForEvaluations_AspNetUsers_UpdateUserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="DataForEvaluations" Type="Self.DataForEvaluations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DataForEvaluations">
+              <PropertyRef Name="UpdateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataForEvaluations_Offices_OfficeId">
+          <End Role="Offices" Type="Self.Offices" Multiplicity="1" />
+          <End Role="DataForEvaluations" Type="Self.DataForEvaluations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DataForEvaluations">
+              <PropertyRef Name="OfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataForEvaluations_PointOfEvaluations_PointOfEvaluationId">
+          <End Role="PointOfEvaluations" Type="Self.PointOfEvaluations" Multiplicity="1" />
+          <End Role="DataForEvaluations" Type="Self.DataForEvaluations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PointOfEvaluations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DataForEvaluations">
+              <PropertyRef Name="PointOfEvaluationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Offices_AspNetUsers_ApplicationUserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Offices" Type="Self.Offices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Offices">
+              <PropertyRef Name="ApplicationUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PointOfEvaluations_AspNetUsers_UpdateUserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="PointOfEvaluations" Type="Self.PointOfEvaluations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PointOfEvaluations">
+              <PropertyRef Name="UpdateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PointOfEvaluations_Offices_AuditOfficeId">
+          <End Role="Offices" Type="Self.Offices" Multiplicity="0..1" />
+          <End Role="PointOfEvaluations" Type="Self.PointOfEvaluations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PointOfEvaluations">
+              <PropertyRef Name="AuditOfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PointOfEvaluations_Offices_OwnerOfficeId">
+          <End Role="Offices" Type="Self.Offices" Multiplicity="0..1" />
+          <End Role="PointOfEvaluations" Type="Self.PointOfEvaluations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PointOfEvaluations">
+              <PropertyRef Name="OwnerOfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Scores_Offices_OfficeId">
+          <End Role="Offices" Type="Self.Offices" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Scores" Type="Self.Scores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Scores">
+              <PropertyRef Name="OfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Scores_PointOfEvaluations_PointOfEvaluationId">
+          <End Role="PointOfEvaluations" Type="Self.PointOfEvaluations" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Scores" Type="Self.Scores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PointOfEvaluations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Scores">
+              <PropertyRef Name="PointOfEvaluationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EPESModelStoreContainer">
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DataForEvaluations" EntityType="Self.DataForEvaluations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Offices" EntityType="Self.Offices" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PointOfEvaluations" EntityType="Self.PointOfEvaluations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Scores" EntityType="Self.Scores" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_DataForEvaluations_AspNetUsers_UpdateUserId" Association="Self.FK_DataForEvaluations_AspNetUsers_UpdateUserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="DataForEvaluations" EntitySet="DataForEvaluations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataForEvaluations_Offices_OfficeId" Association="Self.FK_DataForEvaluations_Offices_OfficeId">
+            <End Role="Offices" EntitySet="Offices" />
+            <End Role="DataForEvaluations" EntitySet="DataForEvaluations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataForEvaluations_PointOfEvaluations_PointOfEvaluationId" Association="Self.FK_DataForEvaluations_PointOfEvaluations_PointOfEvaluationId">
+            <End Role="PointOfEvaluations" EntitySet="PointOfEvaluations" />
+            <End Role="DataForEvaluations" EntitySet="DataForEvaluations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Offices_AspNetUsers_ApplicationUserId" Association="Self.FK_Offices_AspNetUsers_ApplicationUserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Offices" EntitySet="Offices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PointOfEvaluations_AspNetUsers_UpdateUserId" Association="Self.FK_PointOfEvaluations_AspNetUsers_UpdateUserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="PointOfEvaluations" EntitySet="PointOfEvaluations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PointOfEvaluations_Offices_AuditOfficeId" Association="Self.FK_PointOfEvaluations_Offices_AuditOfficeId">
+            <End Role="Offices" EntitySet="Offices" />
+            <End Role="PointOfEvaluations" EntitySet="PointOfEvaluations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PointOfEvaluations_Offices_OwnerOfficeId" Association="Self.FK_PointOfEvaluations_Offices_OwnerOfficeId">
+            <End Role="Offices" EntitySet="Offices" />
+            <End Role="PointOfEvaluations" EntitySet="PointOfEvaluations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Scores_Offices_OfficeId" Association="Self.FK_Scores_Offices_OfficeId">
+            <End Role="Offices" EntitySet="Offices" />
+            <End Role="Scores" EntitySet="Scores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Scores_PointOfEvaluations_PointOfEvaluationId" Association="Self.FK_Scores_PointOfEvaluations_PointOfEvaluationId">
+            <End Role="PointOfEvaluations" EntitySet="PointOfEvaluations" />
+            <End Role="Scores" EntitySet="Scores" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="EPESModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="450" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="NormalizedUserName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="NormalizedEmail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ConcurrencyStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEnd" Type="DateTimeOffset" Precision="7" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="Class" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="FName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GroupName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OfficeId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OfficeName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PIN" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PosName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="DataForEvaluations" Relationship="Self.FK_DataForEvaluations_AspNetUsers_UpdateUserId" FromRole="AspNetUsers" ToRole="DataForEvaluations" />
+          <NavigationProperty Name="Offices" Relationship="Self.FK_Offices_AspNetUsers_ApplicationUserId" FromRole="AspNetUsers" ToRole="Offices" />
+          <NavigationProperty Name="PointOfEvaluations" Relationship="Self.FK_PointOfEvaluations_AspNetUsers_UpdateUserId" FromRole="AspNetUsers" ToRole="PointOfEvaluations" />
+        </EntityType>
+        <EntityType Name="DataForEvaluations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Expect" Type="Decimal" Precision="38" Scale="10" Nullable="false" />
+          <Property Name="Result" Type="Decimal" Precision="38" Scale="10" Nullable="false" />
+          <Property Name="OldResult" Type="Decimal" Precision="38" Scale="10" />
+          <Property Name="AuditComment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Approve" Type="Int32" Nullable="false" />
+          <Property Name="CommentApprove" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PointOfEvaluationId" Type="Int32" Nullable="false" />
+          <Property Name="OfficeId" Type="Int32" Nullable="false" />
+          <Property Name="UpdateUserId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Month" Type="Int32" Nullable="false" />
+          <Property Name="AttachFile" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CompletedDate" Type="DateTime" Precision="7" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_DataForEvaluations_AspNetUsers_UpdateUserId" FromRole="DataForEvaluations" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Offices" Relationship="Self.FK_DataForEvaluations_Offices_OfficeId" FromRole="DataForEvaluations" ToRole="Offices" />
+          <NavigationProperty Name="PointOfEvaluations" Relationship="Self.FK_DataForEvaluations_PointOfEvaluations_PointOfEvaluationId" FromRole="DataForEvaluations" ToRole="PointOfEvaluations" />
+        </EntityType>
+        <EntityType Name="Offices">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Remark" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ApplicationUserId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_Offices_AspNetUsers_ApplicationUserId" FromRole="Offices" ToRole="AspNetUsers" />
+          <NavigationProperty Name="DataForEvaluations" Relationship="Self.FK_DataForEvaluations_Offices_OfficeId" FromRole="Offices" ToRole="DataForEvaluations" />
+          <NavigationProperty Name="PointOfEvaluations" Relationship="Self.FK_PointOfEvaluations_Offices_AuditOfficeId" FromRole="Offices" ToRole="PointOfEvaluations" />
+          <NavigationProperty Name="PointOfEvaluations1" Relationship="Self.FK_PointOfEvaluations_Offices_OwnerOfficeId" FromRole="Offices" ToRole="PointOfEvaluations" />
+          <NavigationProperty Name="Scores" Relationship="Self.FK_Scores_Offices_OfficeId" FromRole="Offices" ToRole="Scores" />
+        </EntityType>
+        <EntityType Name="PointOfEvaluations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Year" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Point" Type="Int32" Nullable="false" />
+          <Property Name="SubPoint" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Weight" Type="Decimal" Precision="7" Scale="4" Nullable="false" />
+          <Property Name="Rate1" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Rate2" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Rate3" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Rate4" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="Rate5" Type="Decimal" Precision="18" Scale="4" Nullable="false" />
+          <Property Name="OwnerOfficeId" Type="Int32" />
+          <Property Name="AuditOfficeId" Type="Int32" />
+          <Property Name="UpdateUserId" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Plan" Type="Int32" Nullable="false" />
+          <Property Name="Unit" Type="Int32" />
+          <Property Name="DetailPlan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DetailRate1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DetailRate2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DetailRate3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DetailRate4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DetailRate5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Detail2Rate1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Detail2Rate2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Detail2Rate3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Detail2Rate4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Detail2Rate5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Rate1MonthStart" Type="DateTime" Precision="7" />
+          <Property Name="Rate1MonthStart2" Type="DateTime" Precision="7" />
+          <Property Name="Rate1MonthStop" Type="DateTime" Precision="7" />
+          <Property Name="Rate1MonthStop2" Type="DateTime" Precision="7" />
+          <Property Name="Rate2MonthStart" Type="DateTime" Precision="7" />
+          <Property Name="Rate2MonthStart2" Type="DateTime" Precision="7" />
+          <Property Name="Rate2MonthStop" Type="DateTime" Precision="7" />
+          <Property Name="Rate2MonthStop2" Type="DateTime" Precision="7" />
+          <Property Name="Rate3MonthStart" Type="DateTime" Precision="7" />
+          <Property Name="Rate3MonthStart2" Type="DateTime" Precision="7" />
+          <Property Name="Rate3MonthStop" Type="DateTime" Precision="7" />
+          <Property Name="Rate3MonthStop2" Type="DateTime" Precision="7" />
+          <Property Name="Rate4MonthStart" Type="DateTime" Precision="7" />
+          <Property Name="Rate4MonthStart2" Type="DateTime" Precision="7" />
+          <Property Name="Rate4MonthStop" Type="DateTime" Precision="7" />
+          <Property Name="Rate4MonthStop2" Type="DateTime" Precision="7" />
+          <Property Name="Rate5MonthStart" Type="DateTime" Precision="7" />
+          <Property Name="Rate5MonthStart2" Type="DateTime" Precision="7" />
+          <Property Name="Rate5MonthStop" Type="DateTime" Precision="7" />
+          <Property Name="Rate5MonthStop2" Type="DateTime" Precision="7" />
+          <Property Name="Ddrive" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ExpectPlan" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="Self.FK_PointOfEvaluations_AspNetUsers_UpdateUserId" FromRole="PointOfEvaluations" ToRole="AspNetUsers" />
+          <NavigationProperty Name="DataForEvaluations" Relationship="Self.FK_DataForEvaluations_PointOfEvaluations_PointOfEvaluationId" FromRole="PointOfEvaluations" ToRole="DataForEvaluations" />
+          <NavigationProperty Name="Offices" Relationship="Self.FK_PointOfEvaluations_Offices_AuditOfficeId" FromRole="PointOfEvaluations" ToRole="Offices" />
+          <NavigationProperty Name="Offices1" Relationship="Self.FK_PointOfEvaluations_Offices_OwnerOfficeId" FromRole="PointOfEvaluations" ToRole="Offices" />
+          <NavigationProperty Name="Scores" Relationship="Self.FK_Scores_PointOfEvaluations_PointOfEvaluationId" FromRole="PointOfEvaluations" ToRole="Scores" />
+        </EntityType>
+        <EntityType Name="Scores">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ScoreValue" Type="Decimal" Precision="5" Scale="4" Nullable="false" />
+          <Property Name="PointOfEvaluationId" Type="Int32" Nullable="false" />
+          <Property Name="OfficeId" Type="Int32" Nullable="false" />
+          <Property Name="LastMonth" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Offices" Relationship="Self.FK_Scores_Offices_OfficeId" FromRole="Scores" ToRole="Offices" />
+          <NavigationProperty Name="PointOfEvaluations" Relationship="Self.FK_Scores_PointOfEvaluations_PointOfEvaluationId" FromRole="Scores" ToRole="PointOfEvaluations" />
+        </EntityType>
+        <Association Name="FK_DataForEvaluations_AspNetUsers_UpdateUserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="DataForEvaluations" Type="Self.DataForEvaluations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DataForEvaluations">
+              <PropertyRef Name="UpdateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Offices_AspNetUsers_ApplicationUserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="Offices" Type="Self.Offices" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Offices">
+              <PropertyRef Name="ApplicationUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PointOfEvaluations_AspNetUsers_UpdateUserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="0..1" />
+          <End Role="PointOfEvaluations" Type="Self.PointOfEvaluations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PointOfEvaluations">
+              <PropertyRef Name="UpdateUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataForEvaluations_Offices_OfficeId">
+          <End Role="Offices" Type="Self.Offices" Multiplicity="1" />
+          <End Role="DataForEvaluations" Type="Self.DataForEvaluations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DataForEvaluations">
+              <PropertyRef Name="OfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DataForEvaluations_PointOfEvaluations_PointOfEvaluationId">
+          <End Role="PointOfEvaluations" Type="Self.PointOfEvaluations" Multiplicity="1" />
+          <End Role="DataForEvaluations" Type="Self.DataForEvaluations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PointOfEvaluations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DataForEvaluations">
+              <PropertyRef Name="PointOfEvaluationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PointOfEvaluations_Offices_AuditOfficeId">
+          <End Role="Offices" Type="Self.Offices" Multiplicity="0..1" />
+          <End Role="PointOfEvaluations" Type="Self.PointOfEvaluations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PointOfEvaluations">
+              <PropertyRef Name="AuditOfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PointOfEvaluations_Offices_OwnerOfficeId">
+          <End Role="Offices" Type="Self.Offices" Multiplicity="0..1" />
+          <End Role="PointOfEvaluations" Type="Self.PointOfEvaluations" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PointOfEvaluations">
+              <PropertyRef Name="OwnerOfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Scores_Offices_OfficeId">
+          <End Role="Offices" Type="Self.Offices" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Scores" Type="Self.Scores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Offices">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Scores">
+              <PropertyRef Name="OfficeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Scores_PointOfEvaluations_PointOfEvaluationId">
+          <End Role="PointOfEvaluations" Type="Self.PointOfEvaluations" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Scores" Type="Self.Scores" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PointOfEvaluations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Scores">
+              <PropertyRef Name="PointOfEvaluationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="EPESEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" />
+          <EntitySet Name="DataForEvaluations" EntityType="Self.DataForEvaluations" />
+          <EntitySet Name="Offices" EntityType="Self.Offices" />
+          <EntitySet Name="PointOfEvaluations" EntityType="Self.PointOfEvaluations" />
+          <EntitySet Name="Scores" EntityType="Self.Scores" />
+          <AssociationSet Name="FK_DataForEvaluations_AspNetUsers_UpdateUserId" Association="Self.FK_DataForEvaluations_AspNetUsers_UpdateUserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="DataForEvaluations" EntitySet="DataForEvaluations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Offices_AspNetUsers_ApplicationUserId" Association="Self.FK_Offices_AspNetUsers_ApplicationUserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="Offices" EntitySet="Offices" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PointOfEvaluations_AspNetUsers_UpdateUserId" Association="Self.FK_PointOfEvaluations_AspNetUsers_UpdateUserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="PointOfEvaluations" EntitySet="PointOfEvaluations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataForEvaluations_Offices_OfficeId" Association="Self.FK_DataForEvaluations_Offices_OfficeId">
+            <End Role="Offices" EntitySet="Offices" />
+            <End Role="DataForEvaluations" EntitySet="DataForEvaluations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DataForEvaluations_PointOfEvaluations_PointOfEvaluationId" Association="Self.FK_DataForEvaluations_PointOfEvaluations_PointOfEvaluationId">
+            <End Role="PointOfEvaluations" EntitySet="PointOfEvaluations" />
+            <End Role="DataForEvaluations" EntitySet="DataForEvaluations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PointOfEvaluations_Offices_AuditOfficeId" Association="Self.FK_PointOfEvaluations_Offices_AuditOfficeId">
+            <End Role="Offices" EntitySet="Offices" />
+            <End Role="PointOfEvaluations" EntitySet="PointOfEvaluations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PointOfEvaluations_Offices_OwnerOfficeId" Association="Self.FK_PointOfEvaluations_Offices_OwnerOfficeId">
+            <End Role="Offices" EntitySet="Offices" />
+            <End Role="PointOfEvaluations" EntitySet="PointOfEvaluations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Scores_Offices_OfficeId" Association="Self.FK_Scores_Offices_OfficeId">
+            <End Role="Offices" EntitySet="Offices" />
+            <End Role="Scores" EntitySet="Scores" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Scores_PointOfEvaluations_PointOfEvaluationId" Association="Self.FK_Scores_PointOfEvaluations_PointOfEvaluationId">
+            <End Role="PointOfEvaluations" EntitySet="PointOfEvaluations" />
+            <End Role="Scores" EntitySet="Scores" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="EPESModelStoreContainer" CdmEntityContainer="EPESEntities">
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="EPESModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="NormalizedUserName" ColumnName="NormalizedUserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="NormalizedEmail" ColumnName="NormalizedEmail" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="ConcurrencyStamp" ColumnName="ConcurrencyStamp" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="LockoutEnd" ColumnName="LockoutEnd" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="Class" ColumnName="Class" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="FName" ColumnName="FName" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="LName" ColumnName="LName" />
+                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+                <ScalarProperty Name="OfficeName" ColumnName="OfficeName" />
+                <ScalarProperty Name="PIN" ColumnName="PIN" />
+                <ScalarProperty Name="PosName" ColumnName="PosName" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DataForEvaluations">
+            <EntityTypeMapping TypeName="EPESModel.DataForEvaluations">
+              <MappingFragment StoreEntitySet="DataForEvaluations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Expect" ColumnName="Expect" />
+                <ScalarProperty Name="Result" ColumnName="Result" />
+                <ScalarProperty Name="OldResult" ColumnName="OldResult" />
+                <ScalarProperty Name="AuditComment" ColumnName="AuditComment" />
+                <ScalarProperty Name="Approve" ColumnName="Approve" />
+                <ScalarProperty Name="CommentApprove" ColumnName="CommentApprove" />
+                <ScalarProperty Name="PointOfEvaluationId" ColumnName="PointOfEvaluationId" />
+                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+                <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+                <ScalarProperty Name="Month" ColumnName="Month" />
+                <ScalarProperty Name="AttachFile" ColumnName="AttachFile" />
+                <ScalarProperty Name="CompletedDate" ColumnName="CompletedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Offices">
+            <EntityTypeMapping TypeName="EPESModel.Offices">
+              <MappingFragment StoreEntitySet="Offices">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="ApplicationUserId" ColumnName="ApplicationUserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PointOfEvaluations">
+            <EntityTypeMapping TypeName="EPESModel.PointOfEvaluations">
+              <MappingFragment StoreEntitySet="PointOfEvaluations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="Point" ColumnName="Point" />
+                <ScalarProperty Name="SubPoint" ColumnName="SubPoint" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Rate1" ColumnName="Rate1" />
+                <ScalarProperty Name="Rate2" ColumnName="Rate2" />
+                <ScalarProperty Name="Rate3" ColumnName="Rate3" />
+                <ScalarProperty Name="Rate4" ColumnName="Rate4" />
+                <ScalarProperty Name="Rate5" ColumnName="Rate5" />
+                <ScalarProperty Name="OwnerOfficeId" ColumnName="OwnerOfficeId" />
+                <ScalarProperty Name="AuditOfficeId" ColumnName="AuditOfficeId" />
+                <ScalarProperty Name="UpdateUserId" ColumnName="UpdateUserId" />
+                <ScalarProperty Name="Plan" ColumnName="Plan" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="DetailPlan" ColumnName="DetailPlan" />
+                <ScalarProperty Name="DetailRate1" ColumnName="DetailRate1" />
+                <ScalarProperty Name="DetailRate2" ColumnName="DetailRate2" />
+                <ScalarProperty Name="DetailRate3" ColumnName="DetailRate3" />
+                <ScalarProperty Name="DetailRate4" ColumnName="DetailRate4" />
+                <ScalarProperty Name="DetailRate5" ColumnName="DetailRate5" />
+                <ScalarProperty Name="Detail2Rate1" ColumnName="Detail2Rate1" />
+                <ScalarProperty Name="Detail2Rate2" ColumnName="Detail2Rate2" />
+                <ScalarProperty Name="Detail2Rate3" ColumnName="Detail2Rate3" />
+                <ScalarProperty Name="Detail2Rate4" ColumnName="Detail2Rate4" />
+                <ScalarProperty Name="Detail2Rate5" ColumnName="Detail2Rate5" />
+                <ScalarProperty Name="Rate1MonthStart" ColumnName="Rate1MonthStart" />
+                <ScalarProperty Name="Rate1MonthStart2" ColumnName="Rate1MonthStart2" />
+                <ScalarProperty Name="Rate1MonthStop" ColumnName="Rate1MonthStop" />
+                <ScalarProperty Name="Rate1MonthStop2" ColumnName="Rate1MonthStop2" />
+                <ScalarProperty Name="Rate2MonthStart" ColumnName="Rate2MonthStart" />
+                <ScalarProperty Name="Rate2MonthStart2" ColumnName="Rate2MonthStart2" />
+                <ScalarProperty Name="Rate2MonthStop" ColumnName="Rate2MonthStop" />
+                <ScalarProperty Name="Rate2MonthStop2" ColumnName="Rate2MonthStop2" />
+                <ScalarProperty Name="Rate3MonthStart" ColumnName="Rate3MonthStart" />
+                <ScalarProperty Name="Rate3MonthStart2" ColumnName="Rate3MonthStart2" />
+                <ScalarProperty Name="Rate3MonthStop" ColumnName="Rate3MonthStop" />
+                <ScalarProperty Name="Rate3MonthStop2" ColumnName="Rate3MonthStop2" />
+                <ScalarProperty Name="Rate4MonthStart" ColumnName="Rate4MonthStart" />
+                <ScalarProperty Name="Rate4MonthStart2" ColumnName="Rate4MonthStart2" />
+                <ScalarProperty Name="Rate4MonthStop" ColumnName="Rate4MonthStop" />
+                <ScalarProperty Name="Rate4MonthStop2" ColumnName="Rate4MonthStop2" />
+                <ScalarProperty Name="Rate5MonthStart" ColumnName="Rate5MonthStart" />
+                <ScalarProperty Name="Rate5MonthStart2" ColumnName="Rate5MonthStart2" />
+                <ScalarProperty Name="Rate5MonthStop" ColumnName="Rate5MonthStop" />
+                <ScalarProperty Name="Rate5MonthStop2" ColumnName="Rate5MonthStop2" />
+                <ScalarProperty Name="Ddrive" ColumnName="Ddrive" />
+                <ScalarProperty Name="ExpectPlan" ColumnName="ExpectPlan" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Scores">
+            <EntityTypeMapping TypeName="EPESModel.Scores">
+              <MappingFragment StoreEntitySet="Scores">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ScoreValue" ColumnName="ScoreValue" />
+                <ScalarProperty Name="PointOfEvaluationId" ColumnName="PointOfEvaluationId" />
+                <ScalarProperty Name="OfficeId" ColumnName="OfficeId" />
+                <ScalarProperty Name="LastMonth" ColumnName="LastMonth" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

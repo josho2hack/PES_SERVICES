@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bf63468042dc4de28bb7c8e7a51fb66f" Name="Diagram1">
+        <EntityTypeShape EntityType="EPESModel.AspNetUsers" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPESModel.DataForEvaluations" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPESModel.Offices" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPESModel.PointOfEvaluations" Width="1.5" PointX="8.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EPESModel.Scores" Width="1.5" PointX="10.5" PointY="10.125" IsExpanded="true" />
+        <AssociationConnector Association="EPESModel.FK_DataForEvaluations_AspNetUsers_UpdateUserId" ManuallyRouted="false" />
+        <AssociationConnector Association="EPESModel.FK_Offices_AspNetUsers_ApplicationUserId" ManuallyRouted="false" />
+        <AssociationConnector Association="EPESModel.FK_PointOfEvaluations_AspNetUsers_UpdateUserId" ManuallyRouted="false" />
+        <AssociationConnector Association="EPESModel.FK_DataForEvaluations_Offices_OfficeId" ManuallyRouted="false" />
+        <AssociationConnector Association="EPESModel.FK_DataForEvaluations_PointOfEvaluations_PointOfEvaluationId" ManuallyRouted="false" />
+        <AssociationConnector Association="EPESModel.FK_PointOfEvaluations_Offices_AuditOfficeId" ManuallyRouted="false" />
+        <AssociationConnector Association="EPESModel.FK_PointOfEvaluations_Offices_OwnerOfficeId" ManuallyRouted="false" />
+        <AssociationConnector Association="EPESModel.FK_Scores_Offices_OfficeId" ManuallyRouted="false" />
+        <AssociationConnector Association="EPESModel.FK_Scores_PointOfEvaluations_PointOfEvaluationId" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
