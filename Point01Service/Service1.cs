@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.ServiceProcess;
@@ -43,17 +45,36 @@ namespace Point01Service
             }
         }
 
-        private void GetDataPoint01()
+        private async void GetDataPoint01()
         {
             var office = _context.Offices.Where(d => d.Code != "00000000" && d.Code.Substring(5, 3) == "000");
             foreach (var item in office)
             {
-                var url = "http://10.20.37.11:7072/serviceTier/webapi/All/officeId/" + item.Code + "/year/" + DateYear.ToString("D4") + "/month/" + DateTime.Now.AddMonths(-1).Month.ToString("D2");
+                DataForEvaluations dataForEvaluation = null;
+                string url = "";
+
+                string yearForRequest;
+                if (DateTime.Now.Month == 10 || DateTime.Now.Month == 11 || DateTime.Now.Month == 12)
+                {
+                    yearForRequest = DateTime.Now.AddYears(1).Year.ToString("D4", CultureInfo.CreateSpecificCulture("th-TH"));
+                {
+                    yearForRequest = DateTime.Now.Year.ToString("D4", CultureInfo.CreateSpecificCulture("th-TH"));
+                }
+
+                if (item.Code == "00009000")
+                {
+                    dataForEvaluation = await _context.DataForEvaluations.Where(d => d.Offices.Code == "00009000" && d.Month == DateTime.Now.AddMonths(-1).Month && d.PointOfEvaluations.Name.Contains("") && d.PointOfEvaluations.Unit == 0).Include(d => d.PointOfEvaluations).FirstOrDefaultAsync();
+
+                    url = "http://10.20.37.11:7072/serviceTier/webapi/All/officeId/" + item.Code + "/year/" + yearForRequest + "/month/" + DateTime.Now.AddMonths(-1).Month.ToString("D2");
+                    }
+                
+
                 var tax = _download_serialized_json_data<RootObject>(url);
                 var taxOwn = tax.TaxCol.FirstOrDefault(t => t.officeCode == item.Code);
                 if (taxOwn != null)
                 {
-                    or.ResultMonthValue = taxOwn.CMcurrentYear;
+                    dataForEvaluation.Expect = taxOwn.CMCYforcast;
+                    dataForEvaluation.Result = taxOwn.CMcurrentYear;
                 }
             }
         }
@@ -69,8 +90,8 @@ namespace Point01Service
                     json_data = w.DownloadString(url);
                 }
                 catch (Exception) { }
-                // if string with JSON data is not empty, deserialize it to class and return its instance 
-                return !string.IsNullOrEmpty(json_data) ? JsonConvert.DeserializeObject<T>(json_data) : new T();
+                    // if string with JSON data is not empty, deserialize it to class and return its instance 
+                    return !string.IsNullOrEmpty(json_data) ? JsonConvert.DeserializeObject<T>(json_data) : new T();
             }
         }
     }
